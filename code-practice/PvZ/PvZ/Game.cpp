@@ -2,7 +2,9 @@
 
 #include "Game.h"
 
-Game::Game() : m_window(nullptr),m_bRunning(true)
+const int thickness = 15;
+const float paddleH = 150.f;
+Game::Game() : m_window(nullptr),m_bRunning(true), m_TicksCount(0)
 {
 
 }
@@ -44,6 +46,13 @@ bool Game::Initialize()
 		return false;
 	}
 
+	
+	m_BallPos.x = 1024.0f / 2.0f;
+	m_BallPos.y = 768.0f / 2.0f;
+	m_BallVel.x = -200.0f;
+	m_BallVel.y = 235.0f;
+	m_PaddlePos.x = 10.0f;
+	m_PaddlePos.y = 768.0f / 2.0f;
 
 	return true;
 }
@@ -100,10 +109,16 @@ void Game::ProcessInput()
 }
 void Game::UpdateGame()
 {
+	//update time
+	float deltaTime = (SDL_GetTicks() - m_TicksCount) / 1000.f;
+	m_TicksCount = SDL_GetTicks();
 
+	//update game world
+	//...
 }
 void Game::GenerateOutput()
 {
+	////////////////////background/////////////
 	// Set draw color to blue
 	SDL_SetRenderDrawColor(
 		m_renderer,
@@ -122,6 +137,58 @@ void Game::GenerateOutput()
 		sprite->Draw(m_renderer);
 	}
 	*/
+	
+
+	// Draw walls
+	SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+	
+	// Draw top wall
+	SDL_Rect wall{
+		0,			// Top left x
+		0,			// Top left y
+		1024,		// Width
+		thickness	// Height
+	};
+	SDL_RenderFillRect(m_renderer, &wall);
+	
+	// Draw bottom wall
+	wall.y = 768 - thickness;
+	SDL_RenderFillRect(m_renderer, &wall);
+	
+	// Draw right wall
+	wall.x = 1024 - thickness;
+	wall.y = 0;
+	wall.w = thickness;
+	wall.h = 1024;
+	SDL_RenderFillRect(m_renderer, &wall);
+	
+	
+	//drawing actors
+	SDL_SetRenderDrawColor(m_renderer, 255, 0, 255, 255);
+	SDL_Rect paddle
+	{
+		static_cast<int>(m_PaddlePos.x),
+		static_cast<int>(m_BallPos.y - paddleH / 2),
+		thickness,
+		static_cast<int>(paddleH)
+	};
+	SDL_RenderFillRect(m_renderer, &paddle);
+
+
+	SDL_SetRenderDrawColor(m_renderer,255,0,0,255);
+	SDL_Rect ball
+	{
+		static_cast<int>(m_BallPos.x - thickness/2),
+		static_cast<int>(m_BallPos.y - thickness/2),
+		thickness,
+		thickness
+	};
+
+
+	SDL_RenderFillRect(m_renderer,&ball);
+
+
+
 	// Swap front buffer and back buffer
 	SDL_RenderPresent(m_renderer);
 }

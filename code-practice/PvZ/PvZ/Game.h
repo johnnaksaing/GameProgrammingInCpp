@@ -36,7 +36,7 @@ private:
 	bool m_bRunning;
 
 	// Number of ticks since start of game
-	Uint32 mTicksCount;
+	Uint32 m_TicksCount;
 	
 	// Pong specific
 	// Direction of paddle
