@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include <cstdio>
 
 const int thickness = 15;
 const float paddleH = 150.f;
@@ -94,7 +95,16 @@ void Game::ProcessInput()
 	{
 		m_bRunning = false;
 	}
-
+	// Update paddle direction based on W/S keys
+	m_PaddleDir = 0;
+	if (state[SDL_SCANCODE_W])
+	{
+		m_PaddleDir -= 1;
+	}
+	if (state[SDL_SCANCODE_S])
+	{
+		m_PaddleDir += 1;
+	}
 	/*
 	// Get state of mouse
 	int x, y;
@@ -109,12 +119,26 @@ void Game::ProcessInput()
 }
 void Game::UpdateGame()
 {
+	//target FPS : 60
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), m_TicksCount + 16))
+		;
+
 	//update time
 	float deltaTime = (SDL_GetTicks() - m_TicksCount) / 1000.f;
 	m_TicksCount = SDL_GetTicks();
 
+	//fix deltaTime to maximum
+	if (deltaTime > 0.05f)
+	{
+		deltaTime = 0.05f;
+	}
+
 	//update game world
-	//...
+	m_BallPos.x += m_BallVel.x * deltaTime;
+	m_BallPos.y += m_BallVel.y * deltaTime;
+
+	m_PaddlePos.y += m_PaddleDir * 300.0f * deltaTime;
+
 }
 void Game::GenerateOutput()
 {
@@ -168,7 +192,7 @@ void Game::GenerateOutput()
 	SDL_Rect paddle
 	{
 		static_cast<int>(m_PaddlePos.x),
-		static_cast<int>(m_BallPos.y - paddleH / 2),
+		static_cast<int>(m_PaddlePos.y - paddleH / 2),
 		thickness,
 		static_cast<int>(paddleH)
 	};
