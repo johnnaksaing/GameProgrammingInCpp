@@ -99,7 +99,7 @@ void Game::ProcessInput()
 	m_PaddleDir = 0;
 	if (state[SDL_SCANCODE_W])
 	{
-		m_PaddleDir -= 1;
+		m_PaddleDir += -1;
 	}
 	if (state[SDL_SCANCODE_S])
 	{
@@ -116,6 +116,7 @@ void Game::ProcessInput()
 
 	mPrevButtons = currbuttons;
 	*/
+	
 }
 void Game::UpdateGame()
 {
@@ -134,11 +135,56 @@ void Game::UpdateGame()
 	}
 
 	//update game world
+	
+	//ball moving
 	m_BallPos.x += m_BallVel.x * deltaTime;
 	m_BallPos.y += m_BallVel.y * deltaTime;
+	
+	//paddle moving
+	// Bounce if needed
+	// Did we intersect with the paddle?
+	float diff = m_PaddlePos.y - m_BallPos.y;
+	// Take absolute value of difference
+	diff = (diff > 0.0f) ? diff : -diff;
+	if (
+		// Our y-difference is small enough
+		diff <= paddleH / 2.0f &&
+		// We are in the correct x-position
+		m_BallPos.x <= 25.0f && m_BallPos.x >= 20.0f &&
+		// The ball is moving to the left
+		m_BallVel.x < 0.0f)
+	{
+		m_BallVel.x *= -1.0f;
+	}
+	if (m_PaddleDir != 0)
+	{
+		m_PaddlePos.y += m_PaddleDir * 300.0f * deltaTime;
+		
+		if (m_PaddlePos.y < (paddleH / 2.f + thickness))
+		{
+			m_PaddlePos.y = (paddleH / 2.f + thickness);
+		}
+		else if (m_PaddlePos.y > 768.f - (paddleH / 2.f + thickness))
+			m_PaddlePos.y = 768.f - (paddleH / 2.f + thickness);
+	}
 
-	m_PaddlePos.y += m_PaddleDir * 300.0f * deltaTime;
+	// Did the ball collide with the right wall?
+	else if (m_BallPos.x >= (1024.0f - thickness) && m_BallVel.x > 0.0f)
+	{
+		m_BallVel.x *= -1.0f;
+	}
 
+	// Did the ball collide with the top wall?
+	if (m_BallPos.y <= thickness && m_BallVel.y < 0.0f)
+	{
+		m_BallVel.y *= -1;
+	}
+	// Did the ball collide with the bottom wall?
+	else if (m_BallPos.y >= (768 - thickness) &&
+		m_BallVel.y > 0.0f)
+	{
+		m_BallVel.y *= -1;
+	}
 }
 void Game::GenerateOutput()
 {

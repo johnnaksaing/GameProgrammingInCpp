@@ -183,8 +183,7 @@ void Game::UpdateGame()
 		mBallVel.y *= -1;
 	}
 	// Did the ball collide with the bottom wall?
-	else if (mBallPos.y >= (768 - thickness) &&
-		mBallVel.y > 0.0f)
+	else if (mBallPos.y >= (768 - thickness) && mBallVel.y > 0.0f)
 	{
 		mBallVel.y *= -1;
 	}
