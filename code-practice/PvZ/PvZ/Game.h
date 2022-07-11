@@ -1,5 +1,9 @@
 #pragma once
 #include "SDL.h"
+#include <unordered_map>
+#include <memory>
+
+#include "Actor.h"
 
 // Vector2 struct just stores x/y coordinates
 // (for now)
@@ -27,16 +31,25 @@ private:
 	void UpdateGame();
 	void GenerateOutput();
 
-	// Window created by SDL
+
+	/*
+	void LoadData();
+	void UnLoadData();
+
+	std::unordered_map<std::string, std::shared_ptr<SDL_Texture>> m_Textures;
+
+	std::vector<std::shared_ptr<class Actor>> m_Actors;
+	std::vector<std::shared_ptr<class Actor>> m_PendingActors;
+
+	*/
+
 	SDL_Window* m_window;
-	
-	// Renderer for 2D drawing
 	SDL_Renderer* m_renderer;
 	
 	bool m_bRunning;
-
-	// Number of ticks since start of game
+	
 	Uint32 m_TicksCount;
+	
 	
 	// Pong specific
 	// Direction of paddle
@@ -47,4 +60,5 @@ private:
 	Vector2 m_BallPos;
 	// Velocity of ball
 	Vector2 m_BallVel;
+	
 };

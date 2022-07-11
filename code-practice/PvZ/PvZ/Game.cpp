@@ -134,6 +134,9 @@ void Game::UpdateGame()
 		deltaTime = 0.05f;
 	}
 
+
+
+
 	//update game world
 	
 	//ball moving
@@ -185,6 +188,16 @@ void Game::UpdateGame()
 	{
 		m_BallVel.y *= -1;
 	}
+
+
+
+
+
+
+
+
+
+
 }
 void Game::GenerateOutput()
 {

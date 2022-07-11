@@ -2,6 +2,7 @@
 
 #include "SDL.h"
 #include "Game.h"
+#include "Component.h"
 #include <vector>
 
 class Actor 
@@ -18,24 +19,27 @@ public:
 	//refreshing all m_Components
 	void UpdateComponents(float deltaTime);
 
-
 	//getter & setters
 	class Game& getGame() const { return m_Game; }
 	State getState() const { return m_State; }
-
+	
+	// Add/remove components
+	void AddComponent(std::shared_ptr<Component> component);
+	void RemoveComponent(std::shared_ptr<Component> component);
 protected:
 
 	virtual void UpdateActor(float deltaTime);
 
 private:
 
-	State m_State;
-
-	//transform
-
 	//components
-	std::vector<class Component*> m_Components;
+	std::vector<std::shared_ptr<Component>> m_Components;
 	
 	//game
 	class Game& m_Game;
+	State m_State;
+	
+	//transform
+	float m_Scale;
+	float m_Rotation;
 };
