@@ -1,26 +1,6 @@
-﻿  Component.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xmemory(1895,9): error C2259: 'Component': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\user\Documents\GitHub\GameProgrammingInCpp\code-practice\PvZ\PvZ\Component.h(3): message : 'Component' 선언을 참조하십시오.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xmemory(1895,9): message : 다음 멤버가 원인입니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xmemory(1895,9): message : 'void Component::Initialize(void)': abstract입니다.
-C:\Users\user\Documents\GitHub\GameProgrammingInCpp\code-practice\PvZ\PvZ\Component.h(10): message : 'Component::Initialize' 선언을 참조하십시오.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xmemory(1895,9): message : 'void Component::Shutdown(void)': abstract입니다.
-C:\Users\user\Documents\GitHub\GameProgrammingInCpp\code-practice\PvZ\PvZ\Component.h(11): message : 'Component::Shutdown' 선언을 참조하십시오.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\memory(2042): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Wrap<_Ty>'에 대한 참조를 확인하세요.
-          with
-          [
-              _Ty=Component
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\memory(2747): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Ref_count_obj2<_Ty>'에 대한 참조를 확인하세요.
-          with
-          [
-              _Ty=Component
-          ]
-C:\Users\user\Documents\GitHub\GameProgrammingInCpp\code-practice\PvZ\PvZ\Component.cpp(13): message : 컴파일되는 함수 템플릿 인스턴스화 'std::shared_ptr<_Ty> std::make_shared<Component,Component*>(Component *&&)'에 대한 참조를 확인하세요.
-          with
-          [
-              _Ty=Component
-          ]
+﻿  Actor.cpp
+  Component.cpp
   Game.cpp
   PvZ.cpp
   코드를 생성하고 있습니다...
+  PvZ.vcxproj -> C:\Users\user\Documents\GitHub\GameProgrammingInCpp\code-practice\PvZ\x64\Debug\PvZ.exe

@@ -24,8 +24,8 @@ public:
 	State getState() const { return m_State; }
 	
 	// Add/remove components
-	void AddComponent(std::shared_ptr<Component> component);
-	void RemoveComponent(std::shared_ptr<Component> component);
+	void AddComponent(std::shared_ptr<class Component> component);
+	void RemoveComponent(std::shared_ptr<class Component> component);
 protected:
 
 	virtual void UpdateActor(float deltaTime);

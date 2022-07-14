@@ -1,4 +1,5 @@
 #pragma once
+#include "Actor.h"
 #include <memory>
 class Component : public std::enable_shared_from_this<Component>
 {
@@ -7,8 +8,8 @@ public:
 	// (the lower the update order, the earlier the component updates)
 	Component(class Actor& owner, int updateOrder = 100);
 
-	virtual void Initialize() = 0;
-	virtual void Shutdown() = 0;
+	virtual void Initialize() {};
+	virtual void Shutdown() {};
 
 	// Destructor
 	virtual ~Component();

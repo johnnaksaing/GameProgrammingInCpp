@@ -10,12 +10,12 @@ Component::Component(Actor& owner, int updateOrder)
 	, m_UpdateOrder(updateOrder)
 {
 	// Add to actor's vector of components
-	m_Owner.AddComponent(std::make_shared<Component>(this));
+	//m_Owner.AddComponent(std::static_pointer_cast<Component>(shared_from_this()));
 }
 
 Component::~Component()
 {
-	m_Owner.RemoveComponent(std::make_shared<Component>(this));
+	//m_Owner.RemoveComponent(std::make_shared<Component>(this));
 }
 
 void Component::Update(float deltaTime)
