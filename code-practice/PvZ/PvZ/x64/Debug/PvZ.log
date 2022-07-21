@@ -2,5 +2,6 @@
   Component.cpp
   Game.cpp
   PvZ.cpp
-  코드를 생성하고 있습니다...
-  PvZ.vcxproj -> C:\Users\user\Documents\GitHub\GameProgrammingInCpp\code-practice\PvZ\x64\Debug\PvZ.exe
+  Generating Code...
+  LINK : C:\Folders\tl qkf\GameProgrammingInCpp\code-practice\PvZ\x64\Debug\PvZ.exe not found or not built by the last incremental link; performing full link
+  PvZ.vcxproj -> C:\Folders\tl qkf\GameProgrammingInCpp\code-practice\PvZ\x64\Debug\PvZ.exe

@@ -1,4 +1,4 @@
-workspace "MySTL"
+workspace "PvZ"
 	architecture "x64"
 
 	configurations
@@ -25,14 +25,17 @@ project "PvZ"
 
 	includedirs
 	{
-		"%{prj.name}/src/container/vector",
-		"%{prj.name}/src/core",
-		"%{prj.name}/src/iterator"
+		"%{prj.name}/Externals/SDL2-2.0.22/include"
 	}
 
 	links
 	{
+		"SDL2.lib"
+	}
 
+	libdirs
+	{
+		"%{prj.name}/Externals/SDL2-2.0.22/lib/x64"
 	}
 
 	filter "system:windows"
